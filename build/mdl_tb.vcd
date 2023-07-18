@@ -1,0 +1,33 @@
+$date
+  Tue Jul 18 10:00:41 2023
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$scope module standard $end
+$upscope $end
+$scope module std_logic_1164 $end
+$upscope $end
+$scope module numeric_std $end
+$upscope $end
+$scope module mdl_tb $end
+$var reg 8 ! switches[7:0] $end
+$var integer 32 " integer_value $end
+$upscope $end
+$enddefinitions $end
+#0
+b00000000 !
+b0 "
+#10000000
+b11111111 !
+b11111111111111111111111111111111 "
+#20000000
+b10000000 !
+b11111111111111111111111110000000 "
+#30000000
+b01101111 !
+b1101111 "
+#40000000
