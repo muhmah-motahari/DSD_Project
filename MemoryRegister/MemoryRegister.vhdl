@@ -12,6 +12,7 @@ end entity;
 architecture struct of MemoryRegister is
 	signal mem	:	std_logic_vector(34 downto 0);
 begin
+	memOut <= mem;
 
 	process(memIn, sel)
 	begin
