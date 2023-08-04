@@ -9,7 +9,7 @@ entity DanceLight is
         load : in  STD_LOGIC;                        -- Load signal 
         din  : in  STD_LOGIC;                        -- Data input (1 bit)
         p    : in  STD_LOGIC_VECTOR(7 downto 0);     
-        q    : out STD_LOGIC_VECTOR(7 downto 0)      -- Dance light pattern 
+        q    : inout STD_LOGIC_VECTOR(7 downto 0)      -- Dance light pattern 
     );
 end entity DanceLight;
 
