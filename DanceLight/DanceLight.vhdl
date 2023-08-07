@@ -9,7 +9,7 @@ entity DanceLight is
         load : in  STD_LOGIC;                        -- Load signal 
         din  : in  STD_LOGIC;                        -- Data input (1 bit)
         p    : in  STD_LOGIC_VECTOR(7 downto 0);     
-        q    : inout STD_LOGIC_VECTOR(7 downto 0)      -- Dance light pattern 
+        q    : inout STD_LOGIC_VECTOR(7 downto 0)      -- generated Dance light pattern 
     );
 end entity DanceLight;
 
@@ -20,8 +20,8 @@ architecture Behavioral of DanceLight is
 begin
     process (clk)
     begin
-        if rising_edge(clk) then
-          
+        if rising_edge(clk) then 
+            --with using xor gate we can generate a random pattern in each cycle ( this lead to generate dance light)
             p_reg(7) <= din xor q0;
             p_reg(6) <= p_reg(7);
             p_reg(5) <= p_reg(6) xor q0;
@@ -31,7 +31,7 @@ begin
             p_reg(1) <= p_reg(2) xor q0;
             p_reg(0) <= p_reg(1) xor q0;
 
-            if load = '1' then
+            if load = '1' then    --if load pin is enabled register content will be updated
                 p_reg <= p;
             end if;
 
