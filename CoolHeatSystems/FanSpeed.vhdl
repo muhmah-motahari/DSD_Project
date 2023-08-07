@@ -3,9 +3,9 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity FanSpeed is
-	port(speed	:	in	std_logic_vector(3 downto 0);
+	port(speed	:	in	std_logic_vector(3 downto 0); --get speed in range of 0 to 7
 			 clk	:	in	std_logic;
-			 pwd_data	:	out	std_logic);
+			 pwd_data	:	out	std_logic);  --determining number of ones in output based on speed degree
 end entity;
 
 architecture struct of FanSpeed is
@@ -13,7 +13,7 @@ architecture struct of FanSpeed is
 	signal counter : natural range 0 to 127 := 0;
 begin
 
-	onesNumber <= (((to_integer(unsigned(speed)) * 100) / 4) * 128) / 100;
+	onesNumber <= (((to_integer(unsigned(speed)) * 100) / 4) * 128) / 100;   -- formula to calculate number of ones in output
 
 	process(clk)
 	begin
