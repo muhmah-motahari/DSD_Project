@@ -11,7 +11,7 @@ end entity;
 architecture struct of CoolHeatSystems is
 	signal count	:	integer	:=	0;
 
-	function count_ones(s : std_logic_vector) return integer is
+	function parityChecker(s : std_logic_vector) return integer is
 	variable temp : natural := 0;
 	begin
 		for i in s'range loop
@@ -20,13 +20,13 @@ architecture struct of CoolHeatSystems is
 		end loop;
 
 		return temp;
-	end function count_ones;
+	end function parityChecker;
 	
 begin 
 	process(chs_conf)
 	begin
 
-		count <= count_ones(chs_conf);
+		count <= parityChecker(chs_conf);
 
 		if (count mod 2) = 0 then
 			chs_mode <= '0';
