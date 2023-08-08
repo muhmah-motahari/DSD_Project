@@ -4,8 +4,8 @@ use ieee.numeric_std.all;
 
 entity CoolHeatSystems is
 	port(chs_conf	:	in	std_logic_vector(7 downto 0);
-			chs_power	:	out	std_logic_vector(3 downto 0);
-			chs_mode	:	out	std_logic);
+			chs_power	:	out	std_logic_vector(3 downto 0);  --adjust power of the fan
+			chs_mode	:	out	std_logic);  -- determine mode of the system 
 end entity;
 
 architecture struct of CoolHeatSystems is
