@@ -10,7 +10,7 @@ end entity;
 
 
 architecture struct of MemoryRegister is
-	signal mem	:	std_logic_vector(34 downto 0) := "00000000000000000000000000000000011";
+	signal mem	:	std_logic_vector(34 downto 0) := "11000000000000000000000000000000000";
 begin
 	memOut <= mem;
 
