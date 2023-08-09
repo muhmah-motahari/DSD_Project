@@ -21,6 +21,17 @@ architecture struct of CoolHeatSystems is
 
 		return temp;
 	end function parityChecker;
+
+	function evenParity(num : integer) return std_logic is
+		variable res : std_logic;
+	begin
+		if (num mod 2) = 0 then
+			res := '0';
+		else
+			res := '1';
+		end if;
+		return res;
+	end function;
 	
 begin 
 	process(chs_conf)
@@ -28,11 +39,7 @@ begin
 
 		count <= parityChecker(chs_conf);
 
-		if (count mod 2) = 0 then
-			chs_mode <= '0';
-		else
-			chs_mode <= '1';
-		end if;
+		chs_mode <= evenParity(count);
 
 		chs_power <= std_logic_vector(to_unsigned(count, chs_power'length));
 
