@@ -10,5 +10,5 @@ For the final project, we have to design a smart home management system.
 
 ## DataPath of project
 
-<img src = "https://s8.uupload.ir/files/fsm-gasdetector_182g.jpg" width=500 height =500 >
+<img src = "https://s8.uupload.ir/files/fsm-gasdetector_182g.jpg" width=850 height =750 >
 <p>FSM of  Gas detector Sensor </p>
