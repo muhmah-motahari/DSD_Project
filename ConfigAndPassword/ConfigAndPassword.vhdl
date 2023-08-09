@@ -21,6 +21,15 @@ architecture struct of ConfigAndPassword is
 				 memOut	:	out	std_logic_vector(34 downto 0));
 	end component;
 
+	function twobit_comp(a, b : std_logic_vector) return std_logic is
+		variable res : std_logic := '0';
+	begin
+		if (a = b) then
+			res := '1';
+		end if;
+		return res;
+	end function;
+
 	type t_state is (A, B, C, D);  --create fsm with 4 state
 	signal state : t_state := A;
 	signal memIn_tmp, memOut_tmp : std_logic_vector(34 downto 0);
@@ -38,7 +47,7 @@ begin
 				state <= B;
 
 			elsif(state = B)then
-				if(confirm = '1' and pass = memOut_tmp(34 downto 33))then
+				if(confirm = '1' and twobit_comp(pass, memOut_tmp(34 downto 0)))then
 					state <= C;   --correct pass entered 
 				else
 					state <= B;  -- incorrect pass entered 
