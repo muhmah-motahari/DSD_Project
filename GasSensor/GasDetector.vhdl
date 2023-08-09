@@ -4,24 +4,25 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity GasDetector is
 	Port ( 
 				 clk      : in STD_LOGIC;
-				 din			: in STD_LOGIC;
-				 gas_mode	: out STD_LOGIC_VECTOR(2 downto 0)
+				 din			: in STD_LOGIC; --input sequence  stream 
+				 gas_mode	: out STD_LOGIC_VECTOR(2 downto 0)  --3 bit output to determine detection of each gas
 			 );
 end entity;
 
 architecture Behavioral of GasDetector is
+	--define states of fsm with statetype structure in vhdl 
 	type StateType is (s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25, s26);
 	signal current_state, next_state : StateType := s0;
 
 begin
 	process(clk)
 	begin
-		if rising_edge(clk) then
-			current_state <= next_state;
+		if rising_edge(clk) then  --set sensitivity list to rising  edge of clock 
+			current_state <= next_state;  
 		end if;
 	end process;
 
-	process(current_state, din)
+	process(current_state, din)  --set  sensitivity list to change in current_state and input of system 
 	begin
 		next_state <= current_state; 
 
@@ -218,13 +219,13 @@ begin
 
 		case current_state is
 			when s10 =>
-				gas_mode <= "001";
+				gas_mode <= "001"; -- methane has been detected 
 
 			when s19 =>
-				gas_mode <= "010";
+				gas_mode <= "010";  -- CO has been detected 
 
 			when s26 =>
-				gas_mode <= "100";
+				gas_mode <= "100";  -- CO2 has been detected 
 
 			when others =>
 				gas_mode <= "000";  
