@@ -12,8 +12,8 @@ end entity;
 architecture struct of LightingSystem is
 
 
-	function calAreEnv (len : in std_logic_vector(3 downto 0)) return std_logic_vector is
-		variable n, n2, res : integer;
+	function calAreEnv (len : in std_logic_vector(3 downto 0)) return std_logic_vector is -- calculate Division of area into perimeter of the room
+		variable n, n2, res : integer; 
 	begin
 		n := to_integer(unsigned(len));
 		n2 := n * n;
@@ -22,7 +22,7 @@ architecture struct of LightingSystem is
 	end function;
 
 
-	function lights_on (lights_number : in std_logic_vector(3 downto 0)) return std_logic_vector is
+	function lights_on (lights_number : in std_logic_vector(3 downto 0)) return std_logic_vector is  --decoder function ( that get number of active lamp and turn on them based on minterms)
 		variable light_st : std_logic_vector(15 downto 0) := "0000000000000000";
 		variable int_tmp : integer;
 	begin
@@ -41,8 +41,8 @@ architecture struct of LightingSystem is
 
 
 begin
-
-	light_state <= "0000000000000000" when tcode = "0001" or tcode = "0010" or tcode = "0000" else
+-- these code is based on table 2 of the project 
+	light_state <= "0000000000000000" when tcode = "0001" or tcode = "0010" or tcode = "0000" else  --turn off all light of home in intiate state 
 								 lights_on(user_light) when tcode = "1000" else
 								 lights_on(calAreEnv(length)) when tcode = "0100";
 
