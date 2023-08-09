@@ -47,7 +47,7 @@ begin
 				state <= B;
 
 			elsif(state = B)then
-				if(confirm = '1' and twobit_comp(pass, memOut_tmp(34 downto 0)))then
+				if(confirm = '1' and twobit_comp(pass, memOut_tmp(34 downto 33)))then
 					state <= C;   --correct pass entered 
 				else
 					state <= B;  -- incorrect pass entered 
