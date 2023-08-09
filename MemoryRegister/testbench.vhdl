@@ -18,7 +18,7 @@ begin
 
 	UUT: MemoryRegister port map(memIn, sel, memOut);
 
-	memIn <= "00000000000000000000000000011111111", "11000000000000000000000000000000000" after 20 ns;
-	sel <= "001", "111" after 20 ns;
+	memIn <= "00000000000000000000000000011111111" after 5 ns, "11000000000000000000000000000000000" after 20 ns;
+	sel <= "001" after 5 ns, "111" after 20 ns;
 
 end architecture;

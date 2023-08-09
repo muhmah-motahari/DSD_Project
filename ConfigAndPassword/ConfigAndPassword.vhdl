@@ -34,10 +34,12 @@ architecture struct of ConfigAndPassword is
 	signal state : t_state := A;
 	signal memIn_tmp, memOut_tmp : std_logic_vector(34 downto 0);
 	signal sel_tmp : std_logic_vector(2 downto 0);
+	signal tmp : std_logic;
 begin
 	lmr: MemoryRegister port map(memIn_tmp, sel_tmp, memOut_tmp);
 	memOut <= memOut_tmp;
-	state <= A when request = '0';
+	tmp <= twobit_comp(pass, memOut_tmp(34 downto 33));
+	-- state <= A when request = '0';
 	
 	process(clk) is
 	begin
@@ -47,7 +49,7 @@ begin
 				state <= B;
 
 			elsif(state = B)then
-				if(confirm = '1' and twobit_comp(pass, memOut_tmp(34 downto 33)))then
+				if(confirm = '1' and tmp = '1')then
 					state <= C;   --correct pass entered 
 				else
 					state <= B;  -- incorrect pass entered 
@@ -63,6 +65,9 @@ begin
 				sel_tmp <= memSel;
 			end if;
 
+			if request = '0' then
+				state <= A;
+			end if;
 		end if;
 	end process;
 

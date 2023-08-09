@@ -29,7 +29,7 @@ begin
 			when "111" =>
 				mem(34 downto 33) <= memIn(34 downto 33);
 			when others =>
-				mem <= (others => 'X');
+				null;
 		end case;
 
 	end process;
